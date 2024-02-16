@@ -227,7 +227,7 @@ The method looks exactly as our naive implemntation of `INotifyPropertyChanged` 
 
 That's non-obvious, but there's a strong reason why it's so. It reduces the amount of memory occupied by features that won't be used. It still takes some space because `Lazy<T>` instances and delegates have to be allocated anyway, but that takes less than the whole feature state. Then one can subscribe to an event or a property observable to listen for changes that are going to happen or already happened, four features in total.
 
-### Avalonia UI's approach
+## Avalonia UI's approach
 
 Avalonia UI. It started as an attempt to make a cross-platform implementation of WPF with similar APIs but grew into something more powerful with its XPF SDK allowing running WPF applications anywhere Avalonia can go. 
 
