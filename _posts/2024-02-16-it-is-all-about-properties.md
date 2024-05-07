@@ -1,4 +1,9 @@
-# It's all about properties
+---
+layout: post
+title: It's all about properties
+tags: C# properties observable reactive UI Avalonia
+permalink: /it-is-all-about-properties
+---
 
 A few years ago I was working in the entertainment industry and participated in the creation of a brand-new graphical engine and its editor with a primary focus on cinematics. As one might expect the core was made using C++, but for the editor [Avalonia UI](https://avaloniaui.net/) was chosen as an easy-to-use cross-platform UI framework. Sure, it wasn't without the MVVM approach with the support of [Reactive UI](https://www.reactiveui.net/). All of that worked well, but only in the beginning while the editor wasn't very complex and wasn't killing the performance by eating a lot of RAM and consuming too much time on event handling. One might say that the toolset was completely wrong and we should have used Y instead of X, but the story isn't about that. It's about the investigation being made and an attempt to solve the performance issue.
 
