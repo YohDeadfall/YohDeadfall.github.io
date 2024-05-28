@@ -691,11 +691,11 @@ public string LookupString() =>
 | LookupSerialNumber | 10000 |  9.538 ns | 0.0773 ns | 0.0686 ns |     576 B |
 | LookupString       | 10000 | 11.463 ns | 0.0966 ns | 0.0856 ns |     406 B |
 
-As expected, usage of `SerialNumber` as a key is slower than with `string`, but the difference is hardly noticeable. If you still need the same performance as for raw strings then you could implement a non-randomized hash algorithm that provides the best result for your case, and deal with the consequences, but in my opinion, it isn't worth it.
+Surprisingly, usage of `SerialNumber` as a key is a bit faster than with `string`, hardly noticeable, but it goes number one. The credit here goes to the JIT compiler which not only used non-shared generics but also devirtualized the string comparison and hash code computation. Now, my readers, you can breathe out and continue using strongly typed identifiers or values without any hesitation.
 
 # Outro
 
-Hope you enjoyed the reading and learned something new about type safety, generics, optimizations, and making representative benchmarks. For further reading on the touched topics here's a list of recommendations:
+Hope you enjoyed the reading and learned something new about type safety, generics, optimizations, and not less importantly making representative tests. For further reading on the touched topics here's a list of recommendations:
 * [CoreCLR Design: Guarded Devirtualization](https://github.com/dotnet/runtime/blob/main/docs/design/coreclr/jit/GuardedDevirtualization.md)
 * [Book of the Runtime: Shared Generics Design](https://github.com/dotnet/runtime/blob/main/docs/design/coreclr/botr/shared-generics.md)
 * [Why is string.GetHashCode() different each time I run my program in .NET Core?](https://andrewlock.net/why-is-string-gethashcode-different-each-time-i-run-my-program-in-net-core/)
