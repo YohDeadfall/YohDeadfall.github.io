@@ -1,7 +1,7 @@
 ---
 layout: post
 title: It's all about properties
-tags: C# properties observable reactive UI Avalonia
+tags: [C#, .NET, properties, observable, reactive, UI, Avalonia]
 permalink: /it-is-all-about-properties
 ---
 
