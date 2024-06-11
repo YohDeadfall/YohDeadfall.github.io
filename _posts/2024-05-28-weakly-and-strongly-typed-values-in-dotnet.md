@@ -18,6 +18,8 @@ The setup is the same as João used in his work ([the source](https://github.com
  * and a change of the target framework to `net9.0` because with `net8.0` it crashes on my machine with `SIGSEGV`.
 
 ```csharp
+public readonly record struct StronglyTypedKey<T>(T Value);
+
 [RankColumn]
 [MemoryDiagnoser]
 [DisassemblyDiagnoser]
