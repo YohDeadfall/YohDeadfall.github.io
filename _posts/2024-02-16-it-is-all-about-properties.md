@@ -9,7 +9,7 @@ A few years ago I was working in the entertainment industry and participated in 
 
 One day a colleague announced a drop-in replacement for subscriptions and change notifications provided by Reactive UI. The approach provided two options for subscriptions. The first one was about specifying the interested property name, while another one used a LINQ expression from which the property to be listened to was determined. Internally there was a dictionary-based cache to keep observables for requested properties and reuse them. While it worked well, it had a few drawbacks, but before going deeper into it let's talk about how ReactiveUI works.
 
-## Reactive UI's approach
+# Reactive UI's approach
 
 The core of Reactive UI starts from the `IReactiveObject` interface:
 
@@ -232,7 +232,7 @@ The method looks exactly as our naive implemntation of `INotifyPropertyChanged` 
 
 That's non-obvious, but there's a strong reason why it's so. It reduces the amount of memory occupied by features that won't be used. It still takes some space because `Lazy<T>` instances and delegates have to be allocated anyway, but that takes less than the whole feature state. Then one can subscribe to an event or a property observable to listen for changes that are going to happen or already happened, four features in total.
 
-## Avalonia UI's approach
+# Avalonia UI's approach
 
 Avalonia UI. It started as an attempt to make a cross-platform implementation of WPF with similar APIs but grew into something more powerful with its XPF SDK allowing running WPF applications anywhere Avalonia can go. 
 
@@ -319,7 +319,7 @@ public abstract class AvaloniaProperty<TValue> : AvaloniaProperty
 
 Worth mentioning that `AvaloniaObject` hides `INotifyPropertyChanged.PropertyChanged` and exposes its event providing the same information as a property change observable obtained via `GetPropertyChangedObservable` or `AvaloniaProperty<T>.Change`. In contradiction to observables, the event allows receiving all property changes of an instance.
 
-## One more, please
+# One more, please
 
 Looking back at all the ways we have seen so far there's a common point. None of them fits well into the .NET model of a property consisting of a getter and a setter method, or at least one of them. There's no place for events at all! One can write them outside of properties with names consisting of the corresponding property name and the `Changed` suffix. If my memory serves me right, WPF can handle that pattern well, but not other frameworks.
 
@@ -644,12 +644,12 @@ Zero allocations are what should be expected because there are no events at all.
 
 And yet, there's one open question left. I started the post saying that Avalonia UI is used as a frontend, but how the heck that can be handled in XAML? Well, it's not the first time I do some magic with custom properties and there's always a way to do that. It's even possible to use befriend WPF with it using custom type descriptors from `System.ComponentModel` though I haven't implemented it yet. In Avalonia it differs, the framework has no idea about the component model. Instead, it has data binding extensions that are registered by adding them to the `BindingPlugins.PropertyAccessors` list. Even `INotifyPropertyChanged` support is done as an extension.
 
-## Summary
+# Summary
 
 As the title states, it's definitely all about properties. While they make code prettier and easier to write by hiding getter and setter invocations, it doesn't come without a cost in case of more complex scenarios like data binding and notifications which came with .NET Framework 2.0. Or maybe it's better to say that the component model doesn't fit properties well, as it should be done differently if there was a time machine. Who knows?
 
 I feel that it doesn't matter, but what matters is that there always should be an alternative solution or point of view. It's even better when none of them are included in the standard library, but very basic blocks to build anything on top of them and not to limit the imagination of developers by some standard implementation written in stone.
 
-## Acknowledgements
+# Acknowledgements
 
 Many thanks to [Oskar Dudycz](https://event-driven.io/) and [JeanHeyd Meneide](https://thephd.dev/) who did the initial review of this article and provided invaluable suggestions I hope made it less tiresome and easy to read.
