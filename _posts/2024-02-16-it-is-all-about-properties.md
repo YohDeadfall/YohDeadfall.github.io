@@ -74,12 +74,12 @@ ublic class ReactiveObject : IReactiveNotifyPropertyChanged<IReactiveObject>, IH
     public ReactiveObject()
     {
         _propertyChangingEventsSubscribed = new Lazy<Unit>(
-                                                           () =>
-                                                           {
-                                                               this.SubscribePropertyChangingEvents();
-                                                               return Unit.Default;
-                                                           },
-                                                           LazyThreadSafetyMode.PublicationOnly);
+            () =>
+            {
+               this.SubscribePropertyChangingEvents();
+               return Unit.Default;
+            },
+            LazyThreadSafetyMode.PublicationOnly);
     }
 
     public event PropertyChangedEventHandler? PropertyChanged
