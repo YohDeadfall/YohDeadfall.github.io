@@ -365,7 +365,7 @@ public class Person
 }
 ```
 
-```il
+```
 .class public auto ansi beforefieldinit Person
     extends [System.Runtime]System.Object
 {

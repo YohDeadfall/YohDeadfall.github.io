@@ -201,7 +201,7 @@ internal sealed class BoxOperator<TSource> : Operator<TSource>
 
 A box here is nothing than a class holding some state machine in it with maybe some additional details like some interfaces being implemented like `IObservable<T>` or `IValueTaskSource<T>` and a final state machine that routes handling back to that class. Actually, it's not implemented as simple as I described, but that's the idea and it's simple. Quite enough for now as the focus is on the outer design, on operators.
 
-With just two extension methods the solution is complete. The reason why two methods are needed is that one is for `Operator<TSource> and another one `IObservable<T>`.
+With just two extension methods the solution is complete. The reason why two methods are needed is that one is for `Operator<TSource>` and another one `IObservable<T>`.
 
 ```csharp
 public static class OperatorExtensions
@@ -324,7 +324,7 @@ public class CreateChainBenchmarks
     public IObservable<int> Lightweight()
     {
         var op = _observable.ToOperator();
-        for (int index = 0; index < ChainLength; index+=1)
+        for (int index = 0; index < ChainLength; index += 1)
             op = op.Select(x => x);
         return op.ToObservable();
     }
@@ -333,7 +333,7 @@ public class CreateChainBenchmarks
     public IDisposable Reactive()
     {
         var op = _observable as IObservable<int>;
-        for (int index = 0; index < ChainLength; index+=1)
+        for (int index = 0; index < ChainLength; index += 1)
             op = System.Reactive.Linq.Observable.Select(op, x => x);
         return op.Subscribe(NoOp<int>.Instance);  // 👈 remember about it
     }
